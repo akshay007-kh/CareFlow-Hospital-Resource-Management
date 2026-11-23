@@ -1,0 +1,7 @@
+{% extends 'dashboard_base.html' %}
+{% block title %}{{ page_title }} · CareFlow{% endblock %}
+{% block breadcrumb %}{{ page_title }}{% endblock %}
+{% block content %}
+<div class="page-head"><div><a href="{{ cancel_url }}" class="back-link">← Back</a><h1>{{ page_title }}</h1><p>{{ page_subtitle }}</p></div></div>
+<div class="content-panel form-panel"><form method="post" novalidate>{% csrf_token %}{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}<div class="form-grid">{% for field in form %}<div class="field {% if field.name == 'description' or field.name == 'treatment_notes' or field.name == 'justification' or field.name == 'message' %}field-wide{% endif %}"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span class="required"> *</span>{% endif %}</label>{% if field.field.widget.input_type == 'checkbox' %}<div class="check-wrap">{{ field }} <span>Yes, enabled</span></div>{% else %}{{ field }}{% endif %}{% if field.help_text %}<small class="field-help">{{ field.help_text|safe }}</small>{% endif %}{% for error in field.errors %}<small class="field-error">{{ error }}</small>{% endfor %}</div>{% endfor %}</div><div class="form-footer"><a href="{{ cancel_url }}" class="btn btn-outline">Cancel</a><button type="submit" class="btn btn-primary">Save changes <span>→</span></button></div></form></div>
+{% endblock %}

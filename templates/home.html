@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}CareFlow — Hospital Resources, In Harmony{% endblock %}
+{% block body_class %}landing-page{% endblock %}
+{% block body %}
+<header class="landing-nav wrap">
+  <a class="brand brand-dark" href="{% url 'home' %}" aria-label="CareFlow home"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span><small>HOSPITAL OS</small></span></a>
+  <nav class="landing-nav-links" aria-label="Main navigation"><a href="#features">Features</a><a href="#how">How it works</a><a href="#roles">For your team</a></nav>
+  <div class="landing-nav-actions"><a class="btn btn-quiet" href="{% url 'login' %}">Log in</a><a class="btn btn-primary btn-small" href="{% url 'register' %}">Get started <span aria-hidden="true">↗</span></a></div>
+</header>
+<main>
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse-dot"></span> INTELLIGENT HOSPITAL OPERATIONS</div>
+      <h1>Better care starts with <em>better flow.</em></h1>
+      <p class="hero-description">One beautifully simple workspace for patients, doctors, hospital staff and administrators. Less complexity. More time for care.</p>
+      <div class="hero-actions"><a class="btn btn-primary btn-large" href="{% url 'register' %}">Create an account <span>↗</span></a><a class="btn btn-outline btn-large" href="{% url 'login' %}">Sign in <span>→</span></a></div>
+      <div class="hero-proof"><div class="proof-avatars"><span>✚</span><span>♡</span><span>＋</span></div><div><strong>Built for every care team</strong><small>Patients · Doctors · Nurses · Admins</small></div></div>
+    </div>
+    <div class="hero-visual" aria-label="Illustrative hospital dashboard preview">
+      <div class="visual-glow visual-glow-one"></div><div class="visual-glow visual-glow-two"></div>
+      <div class="preview-card">
+        <div class="preview-header"><span class="preview-brand">✚ <b>careflow</b></span><span class="preview-tag">● Live overview</span></div>
+        <div class="preview-title">Your hospital, at a glance <span>⋯</span></div>
+        <div class="preview-stats"><div><small>Patients</small><b>248</b><span class="positive">↗ 12.4%</span></div><div><small>Available beds</small><b>36</b><span>of 120 total</span></div><div><small>Team on duty</small><b>42</b><span class="positive">● Active</span></div></div>
+        <div class="preview-bottom"><div class="preview-chart"><div class="preview-row"><b>Admissions overview</b><small>Last 7 days</small></div><div class="mini-bars"><i style="height:42%"></i><i style="height:67%"></i><i style="height:53%"></i><i style="height:83%"></i><i style="height:60%"></i><i style="height:100%"></i><i style="height:77%"></i></div><div class="axis"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div></div><div class="preview-ring"><div class="ring-art"><span>70%<small>capacity</small></span></div><small>Resource utilization</small></div></div>
+      </div>
+      <div class="floating-label floating-one"><span class="floating-icon">✓</span><div><b>Bed allocated</b><small>Ward B · Room 12</small></div></div>
+      <div class="floating-label floating-two"><span class="floating-icon violet">✚</span><div><b>Inventory healthy</b><small>All essentials available</small></div></div>
+    </div>
+  </section>
+  <section class="value-strip wrap"><div><b>01</b><span>Centralized patient records</span></div><div><b>02</b><span>Real-time resource tracking</span></div><div><b>03</b><span>Role-based access</span></div><div><b>04</b><span>Smart inventory controls</span></div></section>
+  <section class="landing-section wrap" id="features"><div class="section-heading"><div><span class="section-kicker">WHAT YOU CAN DO</span><h2>Everything your team needs.<br><span>Nothing it doesn't.</span></h2></div><p>From the front desk to the pharmacy, stay organized with simple tools that work together.</p></div>
+    <div class="feature-grid"><article class="feature-card"><span class="feature-icon icon-blue">♧</span><h3>Patient management</h3><p>Organized profiles, admission history, doctors and treatment notes in one place.</p></article><article class="feature-card"><span class="feature-icon icon-teal">▦</span><h3>Beds & wards</h3><p>Track availability, assign beds safely, manage discharge and maintenance.</p></article><article class="feature-card"><span class="feature-icon icon-purple">✚</span><h3>Equipment tracking</h3><p>Request, approve, issue and return essential medical resources.</p></article><article class="feature-card"><span class="feature-icon icon-orange">▤</span><h3>Medicine inventory</h3><p>Monitor stock levels, expiries and every stock-in or stock-out transaction.</p></article></div>
+  </section>
+  <section class="landing-section roles-band" id="roles"><div class="wrap"><div class="section-heading"><div><span class="section-kicker">ONE HOSPITAL · FOUR EXPERIENCES</span><h2>Made for every role.</h2></div><p>A focused workspace for everyone on your team.</p></div><div class="role-grid"><div class="role-card"><span>◈</span><h3>Administrator</h3><p>See the complete picture. Manage staff, inventory, operations and reports.</p></div><div class="role-card"><span>⚕</span><h3>Doctor</h3><p>Access assigned patients, update treatment and request equipment.</p></div><div class="role-card"><span>✦</span><h3>Staff & nurse</h3><p>Coordinate admissions, bed assignments and supplies with ease.</p></div><div class="role-card"><span>♡</span><h3>Patient</h3><p>See your care details, assigned doctor and share feedback.</p></div></div></div></section>
+  <section class="callout wrap" id="how"><div><span class="section-kicker">READY WHEN YOU ARE</span><h2>A better way to manage care starts here.</h2><p>Register as a patient, doctor or staff member. Hospital accounts are approved by an administrator for secure access.</p></div><a class="btn btn-white btn-large" href="{% url 'register' %}">Get started <span>↗</span></a></section>
+</main>
+<footer class="landing-footer wrap"><div class="brand brand-dark"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span></span></div><span>Thoughtful technology for better care.</span><span>© {% now 'Y' %} CareFlow</span></footer>
+{% endblock %}

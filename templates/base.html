@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1d3b">
+  <meta name="description" content="CareFlow — a modern hospital resource management platform.">
+  <title>{% block title %}CareFlow | Hospital Resource Management{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  {% if messages %}
+  <div class="toast-stack" role="status" aria-live="polite">
+    {% for message in messages %}
+      <div class="toast toast-{{ message.tags|default:'info' }}"><span class="toast-dot"></span><span>{{ message }}</span><button type="button" class="toast-close" aria-label="Dismiss notification">×</button></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% block body %}{% endblock %}
+</body>
+</html>

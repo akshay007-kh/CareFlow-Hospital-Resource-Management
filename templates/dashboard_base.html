@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body_class %}dashboard-body{% endblock %}
+{% block body %}
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar"><div class="sidebar-head"><a class="brand brand-white" href="{% url 'dashboard' %}"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span><small>HOSPITAL OS</small></span></a><button class="sidebar-dismiss" id="sidebarDismiss" type="button" aria-label="Close menu">×</button></div>
+    <div class="sidebar-scroll"><div class="sidebar-label">WORKSPACE</div>
+    <a class="sidebar-link {% if request.resolver_match.url_name == 'admin_dashboard' or request.resolver_match.url_name == 'doctor_dashboard' or request.resolver_match.url_name == 'staff_dashboard' or request.resolver_match.url_name == 'patient_dashboard' %}active{% endif %}" href="{% url 'dashboard' %}"><span class="nav-ico">▦</span>Overview</a>
+    {% if current_role == 'admin' %}
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'users' %}active{% endif %}" href="{% url 'users' %}"><span class="nav-ico">◉</span>Team & accounts</a>
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'departments' %}active{% endif %}" href="{% url 'departments' %}"><span class="nav-ico">▤</span>Departments</a>
+    {% endif %}
+    {% if current_role == 'admin' or current_role == 'staff' or current_role == 'doctor' %}
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'patients' %}active{% endif %}" href="{% url 'patients' %}"><span class="nav-ico">♡</span>Patients</a>
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'beds' %}active{% endif %}" href="{% url 'beds' %}"><span class="nav-ico">⊞</span>Beds & wards</a>
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'equipment' %}active{% endif %}" href="{% url 'equipment' %}"><span class="nav-ico">⚕</span>Equipment</a>
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'equipment_requests' %}active{% endif %}" href="{% url 'equipment_requests' %}"><span class="nav-ico">⇄</span>Equipment requests</a>
+    {% endif %}
+    {% if current_role == 'admin' or current_role == 'staff' %}
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'equipment_allocations' %}active{% endif %}" href="{% url 'equipment_allocations' %}"><span class="nav-ico">↺</span>Issued resources</a>
+      <a class="sidebar-link {% if request.resolver_match.url_name == 'medicines' %}active{% endif %}" href="{% url 'medicines' %}"><span class="nav-ico">✚</span>Pharmacy stock</a>
+    {% endif %}
+    {% if current_role == 'admin' %}
+      <div class="sidebar-label side-label-later">INSIGHTS</div><a class="sidebar-link {% if request.resolver_match.url_name == 'reports' %}active{% endif %}" href="{% url 'reports' %}"><span class="nav-ico">◫</span>Reports & insights</a><a class="sidebar-link {% if request.resolver_match.url_name == 'feedback_list' %}active{% endif %}" href="{% url 'feedback_list' %}"><span class="nav-ico">✧</span>Patient feedback</a>
+    {% endif %}
+    {% if current_role == 'patient' %}
+      <a class="sidebar-link" href="{% url 'patient_profile' %}"><span class="nav-ico">◉</span>My profile</a><a class="sidebar-link" href="{% url 'feedback_new' %}"><span class="nav-ico">✧</span>Share feedback</a>
+    {% endif %}
+    </div>
+    <div class="sidebar-foot"><div class="sidebar-help"><span>✚</span><b>Care that connects.</b><small>Everything in its right place.</small></div><div class="sidebar-profile"><span class="user-avatar">{{ user.first_name|first|default:user.username|first|upper }}</span><div class="profile-meta"><b>{{ user.display_name }}</b><small>{{ user.get_role_display }}</small></div><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="icon-only logout-icon" title="Sign out" aria-label="Sign out">↗</button></form></div></div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  <div class="main-shell"><header class="topbar"><div class="topbar-left"><button id="sidebarToggle" class="icon-only menu-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button><span class="topbar-crumb">CareFlow <span>/</span> {% block breadcrumb %}Dashboard{% endblock %}</span></div><div class="topbar-right"><span class="date-today">{% now 'D, d M Y' %}</span><span class="topbar-sep"></span><span class="top-user-dot">{{ user.first_name|first|default:user.username|first|upper }}</span></div></header>
+    <main class="app-content">{% block content %}{% endblock %}</main>
+    <footer class="app-footer">CareFlow Hospital OS <span>·</span> Designed to keep care moving</footer>
+  </div>
+</div>
+{% endblock %}

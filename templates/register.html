@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Create account · CareFlow{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block body %}
+<div class="auth-layout register-layout"><aside class="auth-side"><a class="brand brand-white" href="{% url 'home' %}"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span></span></a><div class="auth-side-copy"><div class="eyebrow light"><span class="pulse-dot"></span> JOIN CAREFLOW</div><h1>Care works<br><em>better together.</em></h1><p>One connected platform for smoother operations and more focused patient care.</p><div class="auth-bullet">✓ Protected hospital access</div><div class="auth-bullet">✓ A dashboard designed for your role</div><div class="auth-bullet">✓ Simple, modern workflows</div></div><div class="auth-art"><span>♡</span><div class="auth-art-circle one"></div><div class="auth-art-circle two"></div></div><div class="auth-side-footer">CREATED FOR EVERY CAREGIVER</div></aside>
+<main class="auth-panel"><div class="auth-mobile-logo"><a class="brand brand-dark" href="{% url 'home' %}"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span></span></a></div><div class="auth-content auth-content-wide"><span class="small-kicker">GET STARTED</span><h2>Create your account</h2><p class="muted">Choose your role so we can personalize your workspace.</p>
+<form method="post" class="auth-form register-form" novalidate>{% csrf_token %}{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+<div class="form-grid">{% for field in form %}<div class="field {% if field.name == 'username' or field.name == 'email' or field.name == 'role' or field.name == 'department' or field.name == 'password1' or field.name == 'password2' %}field-wide{% endif %}"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="required">*</span>{% endif %}</label>{{ field }}{% if field.help_text %}<small class="field-help">{{ field.help_text }}</small>{% endif %}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</div>{% endfor %}</div>
+<div class="info-inline"><span>ⓘ</span> Doctor and nurse/staff accounts need admin approval. Admin accounts are created privately by the hospital.</div>
+<button class="btn btn-primary btn-block btn-large" type="submit">Create my account <span>↗</span></button>
+</form><p class="auth-switch">Already have an account? <a href="{% url 'login' %}">Sign in</a></p><a class="back-link" href="{% url 'home' %}">← Back to homepage</a>
+</div></main></div>
+{% endblock %}

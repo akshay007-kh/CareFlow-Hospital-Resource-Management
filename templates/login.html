@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Sign in · CareFlow{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block body %}
+<div class="auth-layout"><aside class="auth-side"><a class="brand brand-white" href="{% url 'home' %}"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span></span></a><div class="auth-side-copy"><div class="eyebrow light"><span class="pulse-dot"></span> WELCOME BACK</div><h1>Making room<br>for <em>better care.</em></h1><p>Your workspace for every patient, every resource and every important moment.</p></div><div class="auth-art"><span>✚</span><div class="auth-art-circle one"></div><div class="auth-art-circle two"></div></div><div class="auth-side-footer">PURPOSE-BUILT FOR HOSPITAL TEAMS</div></aside>
+<main class="auth-panel"><div class="auth-mobile-logo"><a class="brand brand-dark" href="{% url 'home' %}"><span class="brand-mark">✚</span><span>care<span class="brand-accent">flow</span></span></a></div><div class="auth-content"><span class="small-kicker">SIGN IN TO YOUR ACCOUNT</span><h2>Welcome back <span class="hello-emoji">👋</span></h2><p class="muted">Enter your credentials to access your dashboard.</p>
+<form method="post" class="auth-form" novalidate>{% csrf_token %}{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+  {% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.errors %}<small class="field-error">{{ field.errors|striptags }}</small>{% endif %}</div>{% endfor %}
+  <button class="btn btn-primary btn-block btn-large" type="submit">Sign in to CareFlow <span>→</span></button>
+</form><p class="auth-switch">Don't have an account? <a href="{% url 'register' %}">Create one</a></p><a class="back-link" href="{% url 'home' %}">← Back to homepage</a>
+</div></main></div>
+{% endblock %}
